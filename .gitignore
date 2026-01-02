@@ -39,19 +39,4 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 
-# Database (si usaras SQLite)
-*.db
-*.sqlite
-*.sqlite3
 
-# Docker volumes (opcional, depende si quieres commitear)
-# Si NO quieres versionar los datos de MySQL:
-# docker-compose.override.yml
-
-# Testing
-coverage/
-
-# Temporary files
-tmp/
-temp/
-*.tmp
