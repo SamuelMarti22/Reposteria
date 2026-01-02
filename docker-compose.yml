@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: reposteria_mongodb
+    restart: always
+    ports:
+      - "${MONGO_PORT}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE}
+    volumes:
+      - mongo_data:/data/db
+      - ./server/database/mongodb/schema.js:/docker-entrypoint-initdb.d/schema.js:ro,z
+    networks:
+      - reposteria_network
+
+# Estos datos se guardan en driver local que es en el computador/servidor donde se corre el docker-compose
+volumes:
+  mongo_data:
+
+networks:
+  reposteria_network:
