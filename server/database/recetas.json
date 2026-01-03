@@ -1,0 +1,96 @@
+[
+  {
+    "_id": 1,
+    "nombre": "Torta de Chocolate Clásica",
+    "tiempoPreparacion": 90,
+    "ingredientes": [
+      { "idIngrediente": 1, "cantidad": 0.5 },
+      { "idIngrediente": 2, "cantidad": 0.3 },
+      { "idIngrediente": 3, "cantidad": 4 },
+      { "idIngrediente": 4, "cantidad": 0.2 },
+      { "idIngrediente": 5, "cantidad": 0.1 },
+      { "idIngrediente": 6, "cantidad": 0.25 },
+      { "idIngrediente": 8, "cantidad": 15 }
+    ],
+    "servicios": [
+      { "idServicio": 1, "cantidadTiempo": 45 },
+      { "idServicio": 2, "cantidadTiempo": 20 },
+      { "idServicio": 4, "cantidadTiempo": 60 }
+    ],
+    "porcentajeGanancia": 40,
+    "pasosASeguir": [
+      "Precalentar el horno a 180°C",
+      "Mezclar los ingredientes secos (harina, cacao, levadura)",
+      "Batir los huevos con el azúcar hasta punto letra",
+      "Derretir la mantequilla y agregar a la mezcla",
+      "Incorporar los ingredientes secos alternando con la leche",
+      "Verter en molde engrasado y enharinado",
+      "Hornear por 45 minutos o hasta que al insertar un palillo salga limpio",
+      "Dejar enfriar completamente antes de desmoldar",
+      "Decorar al gusto con ganache o buttercream"
+    ],
+    "videoYoutube": "https://www.youtube.com/watch?v=ejemplo1",
+    "rutaFoto": "/images/recetas/torta-chocolate.jpg"
+  },
+  {
+    "_id": 2,
+    "nombre": "Cupcakes de Vainilla",
+    "tiempoPreparacion": 45,
+    "ingredientes": [
+      { "idIngrediente": 1, "cantidad": 0.3 },
+      { "idIngrediente": 2, "cantidad": 0.2 },
+      { "idIngrediente": 3, "cantidad": 3 },
+      { "idIngrediente": 4, "cantidad": 0.15 },
+      { "idIngrediente": 6, "cantidad": 0.15 },
+      { "idIngrediente": 7, "cantidad": 10 },
+      { "idIngrediente": 8, "cantidad": 10 }
+    ],
+    "servicios": [
+      { "idServicio": 1, "cantidadTiempo": 25 },
+      { "idServicio": 2, "cantidadTiempo": 15 }
+    ],
+    "porcentajeGanancia": 50,
+    "pasosASeguir": [
+      "Precalentar el horno a 175°C",
+      "Preparar moldes para cupcakes con capacillos",
+      "Batir mantequilla con azúcar hasta cremoso",
+      "Agregar huevos uno a uno batiendo bien",
+      "Añadir la vainilla",
+      "Incorporar harina y levadura alternando con la leche",
+      "Llenar capacillos 2/3 de su capacidad",
+      "Hornear 18-20 minutos",
+      "Dejar enfriar y decorar con frosting"
+    ],
+    "videoYoutube": "https://www.youtube.com/watch?v=ejemplo2",
+    "rutaFoto": "/images/recetas/cupcakes-vainilla.jpg"
+  },
+  {
+    "_id": 3,
+    "nombre": "Brownies de Chocolate",
+    "tiempoPreparacion": 40,
+    "ingredientes": [
+      { "idIngrediente": 1, "cantidad": 0.2 },
+      { "idIngrediente": 2, "cantidad": 0.4 },
+      { "idIngrediente": 3, "cantidad": 3 },
+      { "idIngrediente": 4, "cantidad": 0.25 },
+      { "idIngrediente": 5, "cantidad": 0.15 }
+    ],
+    "servicios": [
+      { "idServicio": 1, "cantidadTiempo": 30 },
+      { "idServicio": 2, "cantidadTiempo": 10 }
+    ],
+    "porcentajeGanancia": 45,
+    "pasosASeguir": [
+      "Precalentar horno a 180°C",
+      "Derretir mantequilla con el cacao",
+      "Batir huevos con azúcar",
+      "Mezclar ambas preparaciones",
+      "Incorporar la harina tamizada",
+      "Verter en molde rectangular engrasado",
+      "Hornear 25-30 minutos (debe quedar húmedo en el centro)",
+      "Enfriar completamente antes de cortar"
+    ],
+    "videoYoutube": "https://www.youtube.com/watch?v=ejemplo3",
+    "rutaFoto": "/images/recetas/brownies.jpg"
+  }
+]

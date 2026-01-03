@@ -1,0 +1,59 @@
+
+    [
+  {
+    "_id": 1,
+    "nombre": "Harina de trigo",
+    "unidadMedida": "kg",
+    "cantidad": 50,
+    "precioPorUnidad": 1.50
+  },
+  {
+    "_id": 2,
+    "nombre": "Azúcar blanca",
+    "unidadMedida": "kg",
+    "cantidad": 30,
+    "precioPorUnidad": 1.20
+  },
+  {
+    "_id": 3,
+    "nombre": "Huevos",
+    "unidadMedida": "unidad",
+    "cantidad": 100,
+    "precioPorUnidad": 0.25
+  },
+  {
+    "_id": 4,
+    "nombre": "Mantequilla",
+    "unidadMedida": "kg",
+    "cantidad": 10,
+    "precioPorUnidad": 4.50
+  },
+  {
+    "_id": 5,
+    "nombre": "Cacao en polvo",
+    "unidadMedida": "kg",
+    "cantidad": 5,
+    "precioPorUnidad": 8.00
+  },
+  {
+    "_id": 6,
+    "nombre": "Leche",
+    "unidadMedida": "litros",
+    "cantidad": 20,
+    "precioPorUnidad": 1.00
+  },
+  {
+    "_id": 7,
+    "nombre": "Vainilla",
+    "unidadMedida": "ml",
+    "cantidad": 500,
+    "precioPorUnidad": 0.05
+  },
+  {
+    "_id": 8,
+    "nombre": "Levadura en polvo",
+    "unidadMedida": "gramos",
+    "cantidad": 1000,
+    "precioPorUnidad": 0.01
+  }
+]

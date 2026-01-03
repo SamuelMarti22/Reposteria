@@ -1,0 +1,98 @@
+.search-bar {
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-bar__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid #f0ebe3;
+  border-radius: 50px;
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(217, 118, 56, 0.08);
+}
+
+.search-bar__container:focus-within {
+  border-color: #d97638;
+  box-shadow: 0 4px 12px rgba(217, 118, 56, 0.15);
+}
+
+.search-bar__icon {
+  width: 20px;
+  height: 20px;
+  color: #d97638;
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+
+.search-bar__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #333333;
+  background-color: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.search-bar__input::placeholder {
+  color: #999999;
+}
+
+.search-bar__clear {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background-color: #f0ebe3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.search-bar__clear svg {
+  width: 14px;
+  height: 14px;
+  color: #666666;
+}
+
+.search-bar__clear:hover {
+  background-color: #d97638;
+}
+
+.search-bar__clear:hover svg {
+  color: #ffffff;
+}
+
+.search-bar__clear:active {
+  transform: scale(0.95);
+}
+
+/* Variante para fondo beige (opcional) */
+.search-bar--on-beige .search-bar__container {
+  background-color: #ffffff;
+  border-color: #e8e1d5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-bar {
+    max-width: 100%;
+  }
+  
+  .search-bar__container {
+    padding: 10px 16px;
+  }
+  
+  .search-bar__input {
+    font-size: 14px;
+  }
+}

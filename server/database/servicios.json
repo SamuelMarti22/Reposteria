@@ -1,0 +1,22 @@
+[
+  {
+    "_id": 1,
+    "nombre": "Gas de horno",
+    "consumoPorMinuto": 0.05
+  },
+  {
+    "_id": 2,
+    "nombre": "Electricidad",
+    "consumoPorMinuto": 0.03
+  },
+  {
+    "_id": 3,
+    "nombre": "Agua",
+    "consumoPorMinuto": 0.01
+  },
+  {
+    "_id": 4,
+    "nombre": "Refrigeración",
+    "consumoPorMinuto": 0.02
+  }
+]
