@@ -1,6 +1,55 @@
-.recetas-header{
+.recetas-container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.recetas-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 16px 24px;
+}
+
+.recetas-content {
+    padding: 24px;
+}
+
+.error-message {
+    padding: 16px;
+    background-color: #fee;
+    border: 1px solid #fcc;
+    border-radius: 8px;
+    color: #c00;
+}
+
+.recetas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.receta-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.receta-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.receta-card h3 {
+    margin: 0 0 12px 0;
+    color: #1f2937;
+    font-size: 1.25rem;
+}
+
+.receta-card p {
+    margin: 8px 0;
+    color: #6b7280;
+    font-size: 0.95rem;
 }

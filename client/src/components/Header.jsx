@@ -1,24 +1,36 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Header.css';
 
 export default function Header({ activeSection, setActiveSection }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const sections = [
     {
       id: 'ingredientes',
       name: 'Ingredientes',
-      icon: '🥚'
+      icon: '🥚',
+      path: '/ingredientes'
     },
     {
       id: 'servicios',
       name: 'Servicios',
-      icon: '🎂'
+      icon: '🎂',
+      path: '/servicios'
     },
     {
       id: 'recetas',
       name: 'Recetas',
-      icon: '📖'
+      icon: '📖',
+      path: '/recetas'
     }
   ];
+
+  const handleSectionClick = (section) => {
+    setActiveSection(section.id);
+    navigate(section.path);
+  };
 
   return (
     <div className="admin-header">
@@ -34,8 +46,7 @@ export default function Header({ activeSection, setActiveSection }) {
           {sections.map((section) => (
             <div
               key={section.id}
-              // Aquí es donde manejamos el cambio de sección
-              onClick={() => setActiveSection(section.id)}
+              onClick={() => handleSectionClick(section)}
               className="nav-item"
             >
               <div className={`nav-circle ${activeSection === section.id ? 'active' : ''}`}>

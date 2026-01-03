@@ -30,7 +30,7 @@
       "Decorar al gusto con ganache o buttercream"
     ],
     "videoYoutube": "https://www.youtube.com/watch?v=ejemplo1",
-    "rutaFoto": "/images/recetas/torta-chocolate.jpg"
+    "rutaFoto": "/images/recetas/torta-chocolate.png"
   },
   {
     "_id": 2,
@@ -62,7 +62,7 @@
       "Dejar enfriar y decorar con frosting"
     ],
     "videoYoutube": "https://www.youtube.com/watch?v=ejemplo2",
-    "rutaFoto": "/images/recetas/cupcakes-vainilla.jpg"
+    "rutaFoto": "https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800"
   },
   {
     "_id": 3,
@@ -91,6 +91,6 @@
       "Enfriar completamente antes de cortar"
     ],
     "videoYoutube": "https://www.youtube.com/watch?v=ejemplo3",
-    "rutaFoto": "/images/recetas/brownies.jpg"
+    "rutaFoto": "https://images.unsplash.com/photo-1607920591413-4ec007e70023?w=800"
   }
 ]

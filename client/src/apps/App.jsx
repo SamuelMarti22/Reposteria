@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
-import Header from '../components/Header.jsx'
+import MainLayout from '../components/MainLayout.jsx'
+import FullPageLayout from '../components/FullPageLayout.jsx'
 import Ingredientes from './Ingredientes.jsx'
 import Recetas from './Recetas.jsx'
 import Servicios from './Servicios.jsx'
+import DetallesReceta from './DetallesReceta.jsx'
 
 function App() {
   const [message, setMessage] = useState('')
@@ -16,30 +19,25 @@ function App() {
       .catch(() => setMessage('Error de conexión'))
   }, [])
 
-  // Función para renderizar el componente activo
-  const renderActiveSection = () => {
-    switch (activeSection) {
-      case 'ingredientes':
-        return <Ingredientes />
-      case 'servicios':
-        return <Servicios />
-      case 'recetas':
-        return <Recetas />
-      default:
-        return <Recetas />
-    }
-  }
-
   return (
-    <div className="app-container">
-      <Header 
-        activeSection={activeSection} 
-        setActiveSection={setActiveSection} 
-      />
-      <div className="container">
-        {renderActiveSection()}
+    <BrowserRouter>
+      <div className="app-container">
+        <Routes>
+          {/* Rutas CON Header (MainLayout) */}
+          <Route element={<MainLayout activeSection={activeSection} setActiveSection={setActiveSection} />}>
+            <Route path="/" element={<Navigate to="/recetas" replace />} />
+            <Route path="/ingredientes" element={<Ingredientes />} />
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/recetas" element={<Recetas />} />
+          </Route>
+
+          {/* Rutas SIN Header (FullPageLayout) */}
+          <Route element={<FullPageLayout />}>
+            <Route path="/recetas/:id" element={<DetallesReceta />} />
+          </Route>
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   )
 }
 
