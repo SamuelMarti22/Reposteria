@@ -563,6 +563,10 @@
   color: #d97706;
 }
 
+.recipe-summary-value-blue {
+  color: #1565c0;
+}
+
 .recipe-summary-divider {
   height: 2px;
   background: linear-gradient(to right, transparent, #fbbf24, transparent);

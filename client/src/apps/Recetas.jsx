@@ -99,6 +99,8 @@ export default function Recetas() {
                 key={receta._id}
                 imagen={receta.rutaFoto}
                 nombre={receta.nombre}
+                tiempoPreparacion={receta.tiempoPreparacion}
+                costoTiempoPreparacion={`$${receta.costos.costoTiempoPreparacion.toLocaleString('es-CO')}`}
                 precioVenta={`$${receta.costos.precioVenta.toLocaleString('es-CO')}`}
                 costoProduccion={`$${receta.costos.costoProduccion.toLocaleString('es-CO')}`}
                 ganancia={`$${receta.costos.ganancia.toLocaleString('es-CO')}`}

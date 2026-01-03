@@ -47,6 +47,7 @@ export default function DetallesReceta() {
   // ═══════════════════════════════════════════════════════════════════════
   const totalIngredientes = recipe?.costos?.costoIngredientes || 0;
   const totalServicios = recipe?.costos?.costoServicios || 0;
+  const totalTiempoPreparacion = recipe?.costos?.costoTiempoPreparacion || 0;
   const costoTotal = recipe?.costos?.costoProduccion || 0;
 
   // ═══════════════════════════════════════════════════════════════════════
@@ -285,6 +286,13 @@ export default function DetallesReceta() {
                   <span className="recipe-summary-label">⚡ Total Servicios</span>
                   <span className="recipe-summary-value recipe-summary-value-amber">
                     ${totalServicios.toLocaleString()}
+                  </span>
+                </div>
+
+                <div className="recipe-summary-row">
+                  <span className="recipe-summary-label">🕐 Costo Tiempo Preparación ({recipe.tiempoPreparacion} min)</span>
+                  <span className="recipe-summary-value recipe-summary-value-blue">
+                    ${totalTiempoPreparacion.toLocaleString()}
                   </span>
                 </div>
                 

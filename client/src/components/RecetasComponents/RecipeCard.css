@@ -44,11 +44,9 @@
   opacity: 0.3;
 }
 
-/* Badge de porcentaje */
+/* Badges sobre la imagen */
 .recipe-card__badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
   background-color: rgba(80, 80, 80, 0.9);
   backdrop-filter: blur(8px);
   color: #ffffff;
@@ -60,6 +58,19 @@
   align-items: center;
   gap: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Badge de ganancia (arriba derecha) */
+.recipe-card__badge--ganancia {
+  top: 12px;
+  right: 12px;
+}
+
+/* Badge de tiempo (abajo izquierda) */
+.recipe-card__badge--tiempo {
+  bottom: 12px;
+  left: 12px;
+  background-color: rgba(21, 101, 192, 0.95);
 }
 
 .recipe-card__badge-icon {

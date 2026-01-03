@@ -23,6 +23,9 @@ const recetas = require('./database/recetas.json');
  * @returns {Object} - Objeto con costos detallados
  */
 function calcularCostosReceta(receta) {
+  // Constante: Costo de mano de obra por minuto
+  const COSTO_MANO_OBRA_POR_MINUTO = 16.7;
+
   // Calcular costo de ingredientes
   const costoIngredientes = receta.ingredientes.reduce((total, item) => {
     const ingrediente = ingredientes.find(ing => ing._id === item.idIngrediente);
@@ -41,8 +44,11 @@ function calcularCostosReceta(receta) {
     return total;
   }, 0);
 
+  // Calcular costo de tiempo de preparación (mano de obra)
+  const costoTiempoPreparacion = receta.tiempoPreparacion * COSTO_MANO_OBRA_POR_MINUTO;
+
   // Costo total de producción
-  const costoProduccion = costoIngredientes + costoServicios;
+  const costoProduccion = costoIngredientes + costoServicios + costoTiempoPreparacion;
 
   // Precio de venta (costo + ganancia)
   const precioVenta = costoProduccion * (1 + receta.porcentajeGanancia / 100);
@@ -53,6 +59,7 @@ function calcularCostosReceta(receta) {
   return {
     costoIngredientes: parseFloat(costoIngredientes.toFixed(2)),
     costoServicios: parseFloat(costoServicios.toFixed(2)),
+    costoTiempoPreparacion: parseFloat(costoTiempoPreparacion.toFixed(2)),
     costoProduccion: parseFloat(costoProduccion.toFixed(2)),
     precioVenta: parseFloat(precioVenta.toFixed(2)),
     ganancia: parseFloat(ganancia.toFixed(2)),
