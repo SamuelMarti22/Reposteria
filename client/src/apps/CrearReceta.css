@@ -1,0 +1,787 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   📝 CREAR RECETA - ESTILOS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🎨 PÁGINA PRINCIPAL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #fff7ed, #fef3c7, #fef9c3);
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🔄 LOADING Y ERROR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+.crear-receta-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #fed7aa;
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.crear-receta-loading p {
+  margin: 0;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.crear-receta-error {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fef2f2;
+  color: #991b1b;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #fca5a5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📋 HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-header {
+  background-color: white;
+  border-bottom: 1px solid #fed7aa;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.crear-receta-header-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.crear-receta-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.crear-receta-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.crear-receta-back-btn {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.crear-receta-back-btn:hover {
+  background-color: #fff7ed;
+}
+
+.crear-receta-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #7c2d12;
+  margin: 0;
+}
+
+.crear-receta-subtitle {
+  font-size: 0.875rem;
+  color: #ea580c;
+  margin: 0;
+}
+
+.crear-receta-save-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ea580c;
+  color: white;
+  padding: 0.625rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+
+.crear-receta-save-btn:hover {
+  background-color: #c2410c;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📝 FORMULARIO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-form {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📦 SECCIONES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-section {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.crear-receta-section-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #7c2d12;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.crear-receta-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.crear-receta-section-header .crear-receta-section-title {
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🖼️ INFORMACIÓN BÁSICA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-basic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .crear-receta-basic-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.crear-receta-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #9a3412;
+  margin-bottom: 0.5rem;
+}
+
+.crear-receta-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #fed7aa;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  color: #1f2937;
+  background-color: white;
+}
+
+.crear-receta-input:focus {
+  outline: none;
+  border-color: #ea580c;
+}
+
+.crear-receta-input::placeholder {
+  color: #9ca3af;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📷 SUBIDA DE IMAGEN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-image-upload {
+  position: relative;
+}
+
+.crear-receta-image-preview-container {
+  position: relative;
+}
+
+.crear-receta-image-preview {
+  width: 100%;
+  height: 16rem;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.crear-receta-image-remove {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: #ef4444;
+  color: white;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.crear-receta-image-preview-container:hover .crear-receta-image-remove {
+  opacity: 1;
+}
+
+.crear-receta-upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 16rem;
+  border: 2px dashed #fdba74;
+  border-radius: 0.75rem;
+  background-color: #fff7ed;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.crear-receta-upload-area:hover {
+  background-color: #ffedd5;
+}
+
+.crear-receta-upload-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #fb923c;
+  margin-bottom: 0.5rem;
+}
+
+.crear-receta-upload-text {
+  font-size: 0.875rem;
+  color: #ea580c;
+  font-weight: 500;
+}
+
+.crear-receta-upload-hint {
+  font-size: 0.75rem;
+  color: #f97316;
+  margin-top: 0.25rem;
+}
+
+.crear-receta-file-input {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📝 CAMPOS DEL FORMULARIO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.crear-receta-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📊 GRID DE CONTENIDO (Ingredientes y Servicios)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .crear-receta-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ➕ BOTONES DE AGREGAR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+}
+
+.crear-receta-add-btn-orange {
+  background-color: #f97316;
+}
+
+.crear-receta-add-btn-orange:hover {
+  background-color: #ea580c;
+}
+
+.crear-receta-add-btn-amber {
+  background-color: #f59e0b;
+}
+
+.crear-receta-add-btn-amber:hover {
+  background-color: #d97706;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📋 LISTA DE ITEMS (Ingredientes/Servicios)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.crear-receta-item {
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.crear-receta-item-orange {
+  background-color: #fff7ed;
+}
+
+.crear-receta-item-amber {
+  background-color: #fffbeb;
+}
+
+.crear-receta-item-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.crear-receta-item-number {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.crear-receta-item-number-orange {
+  background-color: #f97316;
+}
+
+.crear-receta-item-number-amber {
+  background-color: #f59e0b;
+}
+
+.crear-receta-item-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.crear-receta-item-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.crear-receta-item-grid-simple {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.crear-receta-service-fields {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.crear-receta-item-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #fed7aa;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+  color: #1f2937;
+  background-color: white;
+}
+
+.crear-receta-item-input:focus {
+  outline: none;
+  border-color: #ea580c;
+}
+
+.crear-receta-item-input::placeholder {
+  color: #9ca3af;
+}
+
+.crear-receta-item-input-small {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #fed7aa;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+  color: #1f2937;
+  background-color: white;
+}
+
+.crear-receta-item-input-small:focus {
+  outline: none;
+  border-color: #ea580c;
+}
+
+.crear-receta-item-input-small::placeholder {
+  color: #9ca3af;
+}
+
+.crear-receta-delete-btn {
+  flex-shrink: 0;
+  color: #ef4444;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 0.5rem;
+}
+
+.crear-receta-delete-btn:hover {
+  background-color: #fee2e2;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   💰 TOTALES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-total {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.crear-receta-total-orange {
+  background: linear-gradient(to right, #ffedd5, #fed7aa);
+}
+
+.crear-receta-total-amber {
+  background: linear-gradient(to right, #fef3c7, #fde68a);
+  margin-bottom: 1rem;
+}
+
+.crear-receta-total-label {
+  font-weight: bold;
+  color: #7c2d12;
+}
+
+.crear-receta-total-value {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ea580c;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📊 RESUMEN FINANCIERO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-financial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .crear-receta-financial-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.crear-receta-financial-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 2px solid;
+}
+
+.crear-receta-financial-costs {
+  background: linear-gradient(to bottom right, #fff7ed, #ffedd5);
+  border-color: #fed7aa;
+}
+
+.crear-receta-financial-profits {
+  background: linear-gradient(to bottom right, #f0fdf4, #dcfce7);
+  border-color: #bbf7d0;
+}
+
+.crear-receta-financial-subtitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #7c2d12;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.crear-receta-financial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.crear-receta-financial-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.crear-receta-financial-row-total {
+  padding-top: 0.75rem;
+}
+
+.crear-receta-financial-row-highlight {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.crear-receta-financial-label {
+  font-size: 0.95rem;
+  color: #78350f;
+  font-weight: 500;
+}
+
+.crear-receta-financial-label-bold {
+  font-size: 1rem;
+  color: #7c2d12;
+  font-weight: bold;
+}
+
+.crear-receta-financial-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #92400e;
+}
+
+.crear-receta-financial-total {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ea580c;
+}
+
+.crear-receta-financial-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.crear-receta-financial-cost {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #dc2626;
+}
+
+.crear-receta-financial-profit {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #15803d;
+}
+
+.crear-receta-financial-margin {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.crear-receta-financial-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, #d97706, transparent);
+  margin: 0.5rem 0;
+}
+
+/* Colores de margen según rentabilidad */
+.crear-receta-margin-high {
+  color: #16a34a;
+}
+
+.crear-receta-margin-medium {
+  color: #ca8a04;
+}
+
+.crear-receta-margin-low {
+  color: #dc2626;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   📝 PASOS DE PREPARACIÓN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.crear-receta-step {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.crear-receta-step-number {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(to bottom right, #f97316, #f59e0b);
+  color: white;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.crear-receta-step-content {
+  flex: 1;
+}
+
+.crear-receta-step-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #fed7aa;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: none;
+  transition: border-color 0.2s;
+  color: #1f2937;
+  background-color: white;
+}
+
+.crear-receta-step-textarea:focus {
+  outline: none;
+  border-color: #ea580c;
+}
+
+.crear-receta-step-textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🎯 BOTONES DE ACCIÓN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.crear-receta-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.crear-receta-cancel-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #fdba74;
+  background-color: transparent;
+  color: #c2410c;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.crear-receta-cancel-btn:hover {
+  background-color: #fff7ed;
+}
+
+.crear-receta-submit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  background-color: #ea580c;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.crear-receta-submit-btn:hover {
+  background-color: #c2410c;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🎨 TAMAÑOS DE ICONOS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.icon-size {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-size-sm {
+  width: 1rem;
+  height: 1rem;
+}

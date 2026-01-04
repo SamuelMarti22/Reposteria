@@ -7,6 +7,7 @@ import Ingredientes from './Ingredientes.jsx'
 import Recetas from './Recetas.jsx'
 import Servicios from './Servicios.jsx'
 import DetallesReceta from './DetallesReceta.jsx'
+import CrearReceta from './CrearReceta.jsx'
 
 function App() {
   const [message, setMessage] = useState('')
@@ -34,6 +35,8 @@ function App() {
           {/* Rutas SIN Header (FullPageLayout) */}
           <Route element={<FullPageLayout />}>
             <Route path="/recetas/:id" element={<DetallesReceta />} />
+            <Route path="/recetas/nueva" element={<CrearReceta />} />
+            <Route path="/recetas/editar/:id" element={<CrearReceta />} />
           </Route>
         </Routes>
       </div>

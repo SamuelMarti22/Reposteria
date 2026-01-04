@@ -136,7 +136,10 @@ export default function DetallesReceta() {
                 <p className="recipe-detail-subtitle">Detalle de Receta</p>
               </div>
             </div>
-            <button className="recipe-detail-edit-btn">
+            <button 
+              className="recipe-detail-edit-btn"
+              onClick={() => navigate(`/recetas/editar/${id}`)}
+            >
               <Edit2 className="icon-size-sm" />
               Editar Receta
             </button>
@@ -149,11 +152,13 @@ export default function DetallesReceta() {
         <div className="recipe-card-main">
           <div className="recipe-card-grid">
             <div className="recipe-image-container">
-              <img 
-                src={recipe.rutaFoto || 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800'} 
-                alt={recipe.nombre}
-                className="recipe-image"
-              />
+              {recipe.rutaFoto && (
+                <img 
+                  src={recipe.rutaFoto} 
+                  alt={recipe.nombre}
+                  className="recipe-image"
+                />
+              )}
               <div className="recipe-badge">
                 <span className="recipe-badge-text">✨ {recipe.costos.porcentajeGanancia}%</span>
               </div>

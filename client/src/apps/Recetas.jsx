@@ -73,7 +73,7 @@ export default function Recetas() {
           placeholder="Buscar recetas..."
           onSearch={setPalabraActual}
         />
-        <BotonAgregar variant="primary" onClick={() => {}} icon={"+"}>
+        <BotonAgregar variant="primary" onClick={() => {navigate('/recetas/nueva')}} icon={"+"}>
           Agregar Receta
         </BotonAgregar>
       </div>
