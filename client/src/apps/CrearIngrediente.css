@@ -1,0 +1,306 @@
+.ingredient-form {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.form-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0 0 32px 0;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Grupos de formulario */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group--image {
+  margin-bottom: 32px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555555;
+  margin-bottom: 8px;
+}
+
+/* Input de texto */
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 2px solid #e8e1d5;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #d97638;
+  box-shadow: 0 0 0 3px rgba(217, 118, 56, 0.1);
+}
+
+.form-input::placeholder {
+  color: #999999;
+}
+
+/* Select */
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 2px solid #e8e1d5;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #d97638;
+  box-shadow: 0 0 0 3px rgba(217, 118, 56, 0.1);
+}
+
+/* Input con icono */
+.form-input-with-icon {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d97638;
+  font-weight: 600;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.form-input--with-icon {
+  padding-left: 36px;
+}
+
+/* Fila de dos columnas */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Upload de imagen */
+.image-upload {
+  display: block;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed #d97638;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fef9f5;
+}
+
+.image-upload:hover {
+  border-color: #c26830;
+  background-color: #fef5ee;
+}
+
+.image-upload__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  color: #d97638;
+}
+
+.image-upload__content svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.6;
+}
+
+.image-upload__content span {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.image-upload__content small {
+  font-size: 13px;
+  color: #999999;
+}
+
+/* Vista previa de imagen */
+.image-preview {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #f5f3ee;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-remove {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.image-remove:hover {
+  background-color: #d97638;
+  transform: scale(1.1);
+}
+
+.image-remove svg {
+  width: 18px;
+  height: 18px;
+  color: #333333;
+}
+
+.image-remove:hover svg {
+  color: #ffffff;
+}
+
+/* Valor calculado */
+.calculated-value {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  border: 2px solid #81c784;
+}
+
+.calculated-value__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.calculated-value__label svg {
+  width: 22px;
+  height: 22px;
+}
+
+.calculated-value__amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1b5e20;
+}
+
+/* Botones */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.form-actions .btn {
+  flex: 1;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.form-actions .btn--primary {
+  background-color: #d97638;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(217, 118, 56, 0.25);
+}
+
+.form-actions .btn--primary:hover {
+  background-color: #c26830;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(217, 118, 56, 0.35);
+}
+
+.form-actions .btn--secondary {
+  background-color: #ffffff;
+  color: #d97638;
+  border: 2px solid #d97638;
+  box-shadow: 0 2px 8px rgba(217, 118, 56, 0.1);
+}
+
+.form-actions .btn--secondary:hover {
+  background-color: #fef5ee;
+  transform: translateY(-2px);
+}
+
+.form-actions .btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ingredient-form {
+    padding: 24px;
+  }
+
+  .form-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .calculated-value {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .calculated-value__amount {
+    font-size: 20px;
+  }
+}

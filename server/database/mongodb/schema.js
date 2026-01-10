@@ -50,6 +50,47 @@ db.createCollection('ingredientes', {
 
 print("✅ Colección 'ingredientes' creada con validadores");
 
+// Insertar ingredientes de prueba
+db.ingredientes.insertMany([
+  {
+    _id: 1,
+    nombre: "Harina de trigo",
+    unidadMedida: "kg",
+    cantidad: 25,
+    precioPorUnidad: 1.50
+  },
+  {
+    _id: 2,
+    nombre: "Azúcar blanca",
+    unidadMedida: "kg",
+    cantidad: 15,
+    precioPorUnidad: 2.00
+  },
+  {
+    _id: 3,
+    nombre: "Huevos",
+    unidadMedida: "unidad",
+    cantidad: 120,
+    precioPorUnidad: 0.40
+  },
+  {
+    _id: 4,
+    nombre: "Mantequilla",
+    unidadMedida: "kg",
+    cantidad: 10,
+    precioPorUnidad: 8.50
+  },
+  {
+    _id: 5,
+    nombre: "Leche",
+    unidadMedida: "litros",
+    cantidad: 30,
+    precioPorUnidad: 1.20
+  }
+]);
+
+print("✅ 5 ingredientes de prueba insertados");
+
 // ═══════════════════════════════════════════════════════════════════════════
 // ⚡ COLECCIÓN: SERVICIOS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -77,6 +118,37 @@ db.createCollection('servicios', {
 });
 
 print("✅ Colección 'servicios' creada con validadores");
+
+// Insertar servicios de prueba
+db.servicios.insertMany([
+  {
+    _id: 1,
+    nombre: "Gas",
+    consumoPorMinuto: 0.15
+  },
+  {
+    _id: 2,
+    nombre: "Electricidad",
+    consumoPorMinuto: 0.20
+  },
+  {
+    _id: 3,
+    nombre: "Agua",
+    consumoPorMinuto: 0.05
+  },
+  {
+    _id: 4,
+    nombre: "Mano de obra",
+    consumoPorMinuto: 0.50
+  },
+  {
+    _id: 5,
+    nombre: "Alquiler del local",
+    consumoPorMinuto: 0.08
+  }
+]);
+
+print("✅ 5 servicios de prueba insertados");
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 🍰 COLECCIÓN: RECETAS
@@ -172,6 +244,9 @@ db.createCollection('recetas', {
 });
 
 print("✅ Colección 'recetas' creada con validadores");
+
+
+
 
 // ═══════════════════════════════════════════════════════════════════════════
 // 📊 RESUMEN

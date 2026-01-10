@@ -8,6 +8,7 @@ import Recetas from './Recetas.jsx'
 import Servicios from './Servicios.jsx'
 import DetallesReceta from './DetallesReceta.jsx'
 import CrearReceta from './CrearReceta.jsx'
+import CrearIngrediente from './CrearIngrediente.jsx'
 
 function App() {
   const [message, setMessage] = useState('')
@@ -18,6 +19,13 @@ function App() {
       .then(res => res.json())
       .then(data => setMessage(data.message))
       .catch(() => setMessage('Error de conexión'))
+
+    fetch('http://localhost:5000/api/sync', {
+      method: 'POST'
+    })
+      .then(res => res.json())
+      .then(data => console.log('✅ Datos sincronizados:', data))
+      .catch(err => console.error('❌ Error sincronizando:', err));
   }, [])
 
   return (
@@ -34,9 +42,14 @@ function App() {
 
           {/* Rutas SIN Header (FullPageLayout) */}
           <Route element={<FullPageLayout />}>
-            <Route path="/recetas/:id" element={<DetallesReceta />} />
             <Route path="/recetas/nueva" element={<CrearReceta />} />
             <Route path="/recetas/editar/:id" element={<CrearReceta />} />
+            <Route path="/recetas/:id" element={<DetallesReceta />} />
+
+            <Route path="/ingredientes/nuevo" element={<CrearIngrediente />} />
+            <Route path="/ingredientes/editar/:id" element={<CrearIngrediente />} />
+
+
           </Route>
         </Routes>
       </div>

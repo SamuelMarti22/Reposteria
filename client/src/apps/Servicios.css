@@ -1,0 +1,21 @@
+.servicios-container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.servicios-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+}
+
+.servicios-content {
+    padding: 24px;
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}

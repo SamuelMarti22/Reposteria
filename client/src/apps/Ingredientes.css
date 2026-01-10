@@ -1,0 +1,21 @@
+.ingredientes-container {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.ingredientes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+}
+
+.ingredientes-content {
+    padding: 24px;
+}
+
+.ingredientes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}

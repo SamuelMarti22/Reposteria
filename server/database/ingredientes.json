@@ -1,59 +1,40 @@
-
-    [
+[
   {
     "_id": 1,
     "nombre": "Harina de trigo",
     "unidadMedida": "kg",
-    "cantidad": 50,
-    "precioPorUnidad": 300
+    "cantidad": 25,
+    "precioPorUnidad": 1.5
   },
   {
     "_id": 2,
     "nombre": "Azúcar blanca",
     "unidadMedida": "kg",
-    "cantidad": 30,
-    "precioPorUnidad": 250
+    "cantidad": 15,
+    "precioPorUnidad": 2
   },
   {
     "_id": 3,
     "nombre": "Huevos",
     "unidadMedida": "unidad",
-    "cantidad": 100,
-    "precioPorUnidad": 100
+    "cantidad": 120,
+    "precioPorUnidad": 40,
+    "updatedAt": "2026-01-10T00:39:15.497Z"
   },
   {
     "_id": 4,
     "nombre": "Mantequilla",
     "unidadMedida": "kg",
     "cantidad": 10,
-    "precioPorUnidad": 100
-  },
-  {
-    "_id": 5,
-    "nombre": "Cacao en polvo",
-    "unidadMedida": "kg",
-    "cantidad": 5,
-    "precioPorUnidad": 500
+    "precioPorUnidad": 8.5
   },
   {
     "_id": 6,
-    "nombre": "Leche",
-    "unidadMedida": "litros",
-    "cantidad": 20,
-    "precioPorUnidad": 2500
-  },
-  {
-    "_id": 7,
     "nombre": "Vainilla",
-    "unidadMedida": "ml",
-    "cantidad": 500,
-    "precioPorUnidad": 450
-  },
-  {
-    "_id": 8,
-    "nombre": "Levadura en polvo",
-    "unidadMedida": "gramos",
-    "cantidad": 1000,
-    "precioPorUnidad": 0.01
+    "unidadMedida": "mL",
+    "cantidad": 100,
+    "precioPorUnidad": 100,
+    "createdAt": "2026-01-10T00:06:54.990Z",
+    "updatedAt": "2026-01-10T00:06:54.990Z"
   }
 ]

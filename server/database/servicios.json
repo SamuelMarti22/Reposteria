@@ -1,22 +1,30 @@
 [
   {
     "_id": 1,
-    "nombre": "Gas de horno",
-    "consumoPorMinuto": 0.05
+    "nombre": "Gas",
+    "consumoPorMinuto": 0.15
   },
   {
     "_id": 2,
     "nombre": "Electricidad",
-    "consumoPorMinuto": 0.03
-  },
-  {
-    "_id": 3,
-    "nombre": "Agua",
-    "consumoPorMinuto": 0.01
+    "consumoPorMinuto": 0.2
   },
   {
     "_id": 4,
-    "nombre": "Refrigeración",
-    "consumoPorMinuto": 0.02
+    "nombre": "Mano de obra",
+    "consumoPorMinuto": 0.2,
+    "updatedAt": "2026-01-10T02:11:32.752Z"
+  },
+  {
+    "_id": 5,
+    "nombre": "Alquiler del local",
+    "consumoPorMinuto": 0.08
+  },
+  {
+    "_id": 6,
+    "nombre": "Maria",
+    "consumoPorMinuto": 10,
+    "createdAt": "2026-01-10T02:12:07.566Z",
+    "updatedAt": "2026-01-10T02:12:07.566Z"
   }
 ]

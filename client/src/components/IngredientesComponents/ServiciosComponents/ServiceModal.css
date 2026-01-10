@@ -1,0 +1,385 @@
+/* Fondo oscuro del modal */
+.service-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Contenedor del modal */
+.service-modal {
+  background-color: #ffffff;
+  border-radius: 24px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Botón cerrar */
+.service-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.service-modal-close:hover {
+  background-color: #d97638;
+  transform: scale(1.1);
+}
+
+.service-modal-close svg {
+  width: 20px;
+  height: 20px;
+  color: #333;
+}
+
+.service-modal-close:hover svg {
+  color: #ffffff;
+}
+
+/* Imagen */
+.service-modal-image-container {
+  width: 100%;
+  height: 280px;
+  background-color: #f0ebe3;
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+}
+
+.service-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-modal-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f3ee 0%, #e8e1d5 100%);
+}
+
+.service-modal-image-placeholder svg {
+  width: 80px;
+  height: 80px;
+  color: #d97638;
+  opacity: 0.3;
+}
+
+/* Contenido del modal */
+.service-modal-content {
+  padding: 24px;
+}
+
+.service-modal-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0 0 24px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Información */
+.service-modal-info {
+  margin-bottom: 24px;
+}
+
+.service-modal-consumption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background-color: #e3f2fd;
+  border-radius: 12px;
+}
+
+.service-modal-consumption-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #1976d2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-modal-consumption-icon svg {
+  width: 26px;
+  height: 26px;
+  color: #ffffff;
+}
+
+.service-modal-consumption-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.service-modal-consumption-label {
+  font-size: 14px;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.service-modal-consumption-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0d47a1;
+}
+
+/* Botones de acción */
+.service-modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.service-modal-btn {
+  flex: 1;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.service-modal-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.service-modal-btn--edit {
+  background-color: #d97638;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(217, 118, 56, 0.25);
+}
+
+.service-modal-btn--edit:hover {
+  background-color: #c26830;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(217, 118, 56, 0.35);
+}
+
+.service-modal-btn--delete {
+  background-color: #ffffff;
+  color: #d32f2f;
+  border: 2px solid #d32f2f;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.1);
+}
+
+.service-modal-btn--delete:hover {
+  background-color: #d32f2f;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(211, 47, 47, 0.25);
+}
+
+.service-modal-btn:active {
+  transform: translateY(0);
+}
+
+/* Formulario de edición */
+.service-modal-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  background-color: white;
+  color: #333333;
+}
+
+.service-modal-input:focus {
+  outline: none;
+  border-color: #d97638;
+  box-shadow: 0 0 0 3px rgba(217, 118, 56, 0.1);
+  background-color: #fefaf5;
+}
+
+.service-modal-input::placeholder {
+  color: #999999;
+}
+
+.service-modal-input--title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 24px;
+  padding: 16px 16px;
+}
+
+.service-modal-input--title:focus {
+  border-color: #d97638;
+  box-shadow: 0 0 0 3px rgba(217, 118, 56, 0.1);
+}
+
+.service-modal-input--file {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.service-modal-input--file::file-selector-button {
+  padding: 8px 16px;
+  margin-right: 12px;
+  background-color: #d97638;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.service-modal-input--file::file-selector-button:hover {
+  background-color: #c26830;
+}
+
+/* Preview de imagen */
+.service-modal-preview {
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #f5f3ee;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.service-modal-preview-image {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.service-modal-form-group {
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.service-modal-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555555;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.service-modal-btn--cancel {
+  background-color: #ffffff;
+  color: #666666;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.service-modal-btn--cancel:hover {
+  background-color: #f5f5f5;
+  border-color: #d97638;
+  color: #d97638;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.service-modal-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Responsive - Solo celulares */
+@media (max-width: 480px) {
+  .service-modal {
+    max-width: 100%;
+    border-radius: 20px;
+  }
+
+  .service-modal-image-container {
+    height: 220px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .service-modal-content {
+    padding: 20px;
+  }
+
+  .service-modal-title {
+    font-size: 22px;
+  }
+
+  .service-modal-consumption {
+    padding: 16px 18px;
+  }
+
+  .service-modal-consumption-value {
+    font-size: 20px;
+  }
+
+  .service-modal-btn {
+    padding: 12px 20px;
+    font-size: 15px;
+  }
+
+  .service-modal-actions {
+    flex-direction: column;
+  }
+}
