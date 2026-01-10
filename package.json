@@ -1,0 +1,24 @@
+{
+  "name": "reposteria-caro",
+  "version": "1.0.0",
+  "description": "Sistema de gestión de recetas de repostería",
+  "private": true,
+  "scripts": {
+    "predev": "docker-compose up -d",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run open\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "open": "wait-on http://localhost:5173 && open-cli http://localhost:5173",
+    "stop": "docker-compose down",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "clean": "rm -rf node_modules server/node_modules client/node_modules"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0",
+    "open-cli": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

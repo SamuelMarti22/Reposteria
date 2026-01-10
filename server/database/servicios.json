@@ -1,41 +1,18 @@
 [
   {
-    "imagenUrl": "",
     "_id": 1,
-    "nombre": "Gas",
-    "consumoPorMinuto": 0.15
+    "nombre": "Batidora",
+    "consumoPorMinuto": 12.75,
+    "imagenUrl": "",
+    "createdAt": "2026-01-10T17:46:26.738Z",
+    "updatedAt": "2026-01-10T17:46:26.738Z"
   },
   {
     "_id": 2,
-    "nombre": "Electricidad",
-    "consumoPorMinuto": 0.2,
-    "imagenUrl": "/images/1768018394158-724694042.jpeg",
-    "updatedAt": "2026-01-10T04:13:14.174Z"
-  },
-  {
+    "nombre": "Horno",
+    "consumoPorMinuto": 26,
     "imagenUrl": "",
-    "_id": 3,
-    "nombre": "Agua",
-    "consumoPorMinuto": 0.05
-  },
-  {
-    "imagenUrl": "",
-    "_id": 4,
-    "nombre": "Mano de obra",
-    "consumoPorMinuto": 0.5
-  },
-  {
-    "imagenUrl": "",
-    "_id": 5,
-    "nombre": "Alquiler del local",
-    "consumoPorMinuto": 0.08
-  },
-  {
-    "_id": 6,
-    "nombre": "Maria",
-    "consumoPorMinuto": 200,
-    "imagenUrl": "/images/1768018268564-139648518.jpeg",
-    "createdAt": "2026-01-10T04:11:08.590Z",
-    "updatedAt": "2026-01-10T04:11:08.590Z"
+    "createdAt": "2026-01-10T17:51:41.403Z",
+    "updatedAt": "2026-01-10T17:51:41.403Z"
   }
 ]

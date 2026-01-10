@@ -2,52 +2,31 @@
   {
     "_id": 1,
     "nombre": "Harina de trigo",
-    "unidadMedida": "kg",
-    "cantidad": 25,
-    "precioPorUnidad": 1.48,
-    "imagenUrl": "/images/1768018241948-748257982.jpeg",
-    "updatedAt": "2026-01-10T04:10:41.969Z"
+    "unidadMedida": "g",
+    "cantidad": 500,
+    "precioPorUnidad": 3.4,
+    "imagenUrl": "",
+    "createdAt": "2026-01-10T17:29:14.325Z",
+    "updatedAt": "2026-01-10T17:29:14.325Z"
   },
   {
-    "imagenUrl": "",
     "_id": 2,
-    "nombre": "Azúcar blanca",
-    "unidadMedida": "kg",
-    "cantidad": 15,
-    "precioPorUnidad": 2
-  },
-  {
-    "imagenUrl": "",
-    "_id": 3,
-    "nombre": "Huevos",
-    "unidadMedida": "unidad",
-    "cantidad": 120,
-    "precioPorUnidad": 0.4
-  },
-  {
-    "imagenUrl": "",
-    "_id": 4,
-    "nombre": "Mantequilla",
-    "unidadMedida": "kg",
-    "cantidad": 10,
-    "precioPorUnidad": 8.5
-  },
-  {
-    "imagenUrl": "",
-    "_id": 5,
-    "nombre": "Leche",
-    "unidadMedida": "litros",
+    "nombre": "Huevo",
+    "unidadMedida": "unidades",
     "cantidad": 30,
-    "precioPorUnidad": 1.2
+    "precioPorUnidad": 600,
+    "imagenUrl": "",
+    "createdAt": "2026-01-10T17:29:52.267Z",
+    "updatedAt": "2026-01-10T17:29:52.267Z"
   },
   {
-    "_id": 6,
-    "nombre": "Vainilla",
-    "unidadMedida": "kg",
-    "cantidad": 10,
-    "precioPorUnidad": 100,
-    "imagenUrl": "/images/1768018455997-772697024.jpeg",
-    "createdAt": "2026-01-10T04:14:16.015Z",
-    "updatedAt": "2026-01-10T04:14:16.015Z"
+    "_id": 3,
+    "nombre": "Mantequilla",
+    "unidadMedida": "g",
+    "cantidad": 125,
+    "precioPorUnidad": 68,
+    "imagenUrl": "",
+    "createdAt": "2026-01-10T17:31:59.372Z",
+    "updatedAt": "2026-01-10T17:32:16.429Z"
   }
 ]
