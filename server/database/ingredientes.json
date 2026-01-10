@@ -5,45 +5,49 @@
     "unidadMedida": "kg",
     "cantidad": 25,
     "precioPorUnidad": 1.48,
-    "imagenUrl": "/images/1768015487831-252362236.jpeg",
-    "updatedAt": "2026-01-10T03:24:47.848Z"
+    "imagenUrl": "/images/1768018241948-748257982.jpeg",
+    "updatedAt": "2026-01-10T04:10:41.969Z"
   },
   {
+    "imagenUrl": "",
+    "_id": 2,
+    "nombre": "Azúcar blanca",
+    "unidadMedida": "kg",
+    "cantidad": 15,
+    "precioPorUnidad": 2
+  },
+  {
+    "imagenUrl": "",
     "_id": 3,
     "nombre": "Huevos",
     "unidadMedida": "unidad",
     "cantidad": 120,
-    "precioPorUnidad": 40,
-    "updatedAt": "2026-01-10T03:24:56.673Z",
-    "imagenUrl": "/images/1768015496656-420004009.jpeg"
+    "precioPorUnidad": 0.4
   },
   {
+    "imagenUrl": "",
     "_id": 4,
     "nombre": "Mantequilla",
     "unidadMedida": "kg",
     "cantidad": 10,
-    "precioPorUnidad": 8.5,
-    "imagenUrl": "/images/1768015076069-801264747.jpeg",
-    "updatedAt": "2026-01-10T03:18:01.194Z"
+    "precioPorUnidad": 8.5
+  },
+  {
+    "imagenUrl": "",
+    "_id": 5,
+    "nombre": "Leche",
+    "unidadMedida": "litros",
+    "cantidad": 30,
+    "precioPorUnidad": 1.2
   },
   {
     "_id": 6,
     "nombre": "Vainilla",
-    "unidadMedida": "mL",
-    "cantidad": 100,
-    "precioPorUnidad": 100,
-    "createdAt": "2026-01-10T00:06:54.990Z",
-    "updatedAt": "2026-01-10T03:18:21.753Z",
-    "imagenUrl": "/images/1768015101737-506048473.jpeg"
-  },
-  {
-    "_id": 7,
-    "nombre": "Maria",
     "unidadMedida": "kg",
-    "cantidad": 20,
+    "cantidad": 10,
     "precioPorUnidad": 100,
-    "imagenUrl": "/images/1768016414542-240100177.jpeg",
-    "createdAt": "2026-01-10T03:40:14.565Z",
-    "updatedAt": "2026-01-10T03:40:14.565Z"
+    "imagenUrl": "/images/1768018455997-772697024.jpeg",
+    "createdAt": "2026-01-10T04:14:16.015Z",
+    "updatedAt": "2026-01-10T04:14:16.015Z"
   }
 ]

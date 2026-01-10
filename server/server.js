@@ -327,6 +327,24 @@ app.put('/api/ingredientes/:id', async (req, res) => {
       });
     }
 
+    // Obtener el ingrediente ANTES de actualizar
+    const ingredienteAntiguo = await Ingredientes.findOne({ _id: id });
+    if (!ingredienteAntiguo) {
+      return res.status(404).json({ error: 'Ingrediente no encontrado' });
+    }
+
+    // Si la imagen cambió, eliminar la imagen vieja
+    if (datosActualizados.imagenUrl && datosActualizados.imagenUrl !== ingredienteAntiguo.imagenUrl) {
+      if (ingredienteAntiguo.imagenUrl) {
+        const nombreArchivo = ingredienteAntiguo.imagenUrl.split('/').pop();
+        const rutaImagen = path.join(__dirname, '../client/public/images/', nombreArchivo);
+        if (fs.existsSync(rutaImagen)) {
+          fs.unlinkSync(rutaImagen);
+          console.log(`🗑️ Imagen antigua eliminada: ${nombreArchivo}`);
+        }
+      }
+    }
+
     // Actualizar en MongoDB
     const ingrediente = await Ingredientes.findOneAndUpdate(
       { _id: id },
@@ -339,10 +357,6 @@ app.put('/api/ingredientes/:id', async (req, res) => {
       },
       { new: true, runValidators: true }
     );
-
-    if (!ingrediente) {
-      return res.status(404).json({ error: 'Ingrediente no encontrado' });
-    }
 
     // Actualizar JSON
     await actualizarJSONIngredientes();
@@ -358,7 +372,7 @@ app.put('/api/ingredientes/:id', async (req, res) => {
       detalles: error.message
     });
   }
-});
+})
 
 // Eliminar ingrediente existente
 app.delete('/api/ingredientes/:id', async (req, res) => {
@@ -474,6 +488,25 @@ app.put('/api/servicios/:id', async (req, res) => {
         error: 'Faltan datos requeridos: nombre y consumoPorMinuto son obligatorios'
       });
     }
+
+    // Obtener el servicio ANTES de actualizar
+    const servicioAntiguo = await Servicios.findOne({ _id: id });
+    if (!servicioAntiguo) {
+      return res.status(404).json({ error: 'Servicio no encontrado' });
+    }
+
+    // Si la imagen cambió, eliminar la imagen vieja
+    if (datosActualizados.imagenUrl && datosActualizados.imagenUrl !== servicioAntiguo.imagenUrl) {
+      if (servicioAntiguo.imagenUrl) {
+        const nombreArchivo = servicioAntiguo.imagenUrl.split('/').pop();
+        const rutaImagen = path.join(__dirname, '../client/public/images/', nombreArchivo);
+        if (fs.existsSync(rutaImagen)) {
+          fs.unlinkSync(rutaImagen);
+          console.log(`🗑️ Imagen antigua eliminada: ${nombreArchivo}`);
+        }
+      }
+    }
+
     // Actualizar en MongoDB
     const servicio = await Servicios.findOneAndUpdate(
       { _id: id },
@@ -484,9 +517,6 @@ app.put('/api/servicios/:id', async (req, res) => {
       },
       { new: true, runValidators: true }
     );
-    if (!servicio) {
-      return res.status(404).json({ error: 'Servicio no encontrado' });
-    }
     // Actualizar JSON
     await actualizarJSONServicios();
     res.json({
@@ -501,7 +531,7 @@ app.put('/api/servicios/:id', async (req, res) => {
       detalles: error.message
     });
   }
-});
+})
 
 // Eliminar servicio existente
 app.delete('/api/servicios/:id', async (req, res) => {
@@ -695,6 +725,24 @@ app.put('/api/recetas/:id', async (req, res) => {
       });
     }
 
+    // Obtener la receta ANTES de actualizar
+    const recetaAntigua = await Receta.findOne({ _id: id });
+    if (!recetaAntigua) {
+      return res.status(404).json({ error: 'Receta no encontrada' });
+    }
+
+    // Si la imagen cambió, eliminar la imagen vieja
+    if (datosActualizados.imagenUrl && datosActualizados.imagenUrl !== recetaAntigua.imagenUrl) {
+      if (recetaAntigua.imagenUrl) {
+        const nombreArchivo = recetaAntigua.imagenUrl.split('/').pop();
+        const rutaImagen = path.join(__dirname, '../client/public/images/', nombreArchivo);
+        if (fs.existsSync(rutaImagen)) {
+          fs.unlinkSync(rutaImagen);
+          console.log(`🗑️ Imagen antigua eliminada: ${nombreArchivo}`);
+        }
+      }
+    }
+
     // Actualizar receta manteniendo el ID original
     const recetaActualizada = {
       nombre: datosActualizados.nombre,
@@ -713,10 +761,6 @@ app.put('/api/recetas/:id', async (req, res) => {
       recetaActualizada,
       { new: true, runValidators: true }
     );
-
-    if (!receta) {
-      return res.status(404).json({ error: 'Receta no encontrada' });
-    }
 
     // Retornar receta con costos calculados
     const recetaConCostos = enriquecerRecetaConCostos(receta.toObject());

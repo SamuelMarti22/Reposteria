@@ -1,32 +1,41 @@
 [
   {
+    "imagenUrl": "",
     "_id": 1,
     "nombre": "Gas",
-    "consumoPorMinuto": 0.15,
-    "imagenUrl": "/images/1768016187441-14495429.jpeg",
-    "updatedAt": "2026-01-10T03:36:27.455Z"
+    "consumoPorMinuto": 0.15
   },
   {
-    "_id": 5,
-    "nombre": "Alquiler del local",
-    "consumoPorMinuto": 0.08,
-    "imagenUrl": "/images/1768016315698-418875250.jpeg",
-    "updatedAt": "2026-01-10T03:38:35.711Z"
+    "_id": 2,
+    "nombre": "Electricidad",
+    "consumoPorMinuto": 0.2,
+    "imagenUrl": "/images/1768018394158-724694042.jpeg",
+    "updatedAt": "2026-01-10T04:13:14.174Z"
   },
   {
     "imagenUrl": "",
-    "_id": 6,
-    "nombre": "Maria",
-    "consumoPorMinuto": 10,
-    "createdAt": "2026-01-10T02:12:07.566Z",
-    "updatedAt": "2026-01-10T02:12:07.566Z"
+    "_id": 3,
+    "nombre": "Agua",
+    "consumoPorMinuto": 0.05
   },
   {
-    "_id": 7,
-    "nombre": "Batidora",
+    "imagenUrl": "",
+    "_id": 4,
+    "nombre": "Mano de obra",
+    "consumoPorMinuto": 0.5
+  },
+  {
+    "imagenUrl": "",
+    "_id": 5,
+    "nombre": "Alquiler del local",
+    "consumoPorMinuto": 0.08
+  },
+  {
+    "_id": 6,
+    "nombre": "Maria",
     "consumoPorMinuto": 200,
-    "imagenUrl": "/images/1768016367068-87360710.jpeg",
-    "createdAt": "2026-01-10T03:39:27.123Z",
-    "updatedAt": "2026-01-10T03:39:27.123Z"
+    "imagenUrl": "/images/1768018268564-139648518.jpeg",
+    "createdAt": "2026-01-10T04:11:08.590Z",
+    "updatedAt": "2026-01-10T04:11:08.590Z"
   }
 ]
