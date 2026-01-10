@@ -158,10 +158,39 @@
   background-color: #f5f3ee;
 }
 
-.image-preview img {
+.image-preview-label {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.image-preview-label img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.image-preview-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+  font-weight: 600;
+}
+
+.image-preview-label:hover .image-preview-overlay {
+  opacity: 1;
 }
 
 .image-remove {
@@ -179,6 +208,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
 }
 
 .image-remove:hover {

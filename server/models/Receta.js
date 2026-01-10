@@ -47,7 +47,7 @@ const recetaSchema = new mongoose.Schema({
     type: String,
     trim: true
   }],
-  rutaFoto: {
+  imagenUrl: {
     type: String,
     default: ''
   },

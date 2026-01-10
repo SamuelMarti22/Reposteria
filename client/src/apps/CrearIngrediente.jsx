@@ -16,10 +16,11 @@ const CrearIngrediente = () => {
     unidad: 'kg',
     cantidad: '',
     valorComprado: '',
-    imagen: ''
+    imagenUrl: ''
   });
   
   const [imagePreview, setImagePreview] = useState('');
+  const [imagenFile, setImagenFile] = useState(null);
   const [valorPorUnidad, setValorPorUnidad] = useState(0);
   const [loading, setLoading] = useState(isEditMode);
   const [error, setError] = useState(null);
@@ -43,11 +44,11 @@ const CrearIngrediente = () => {
           unidad: ingrediente.unidadMedida || 'kg',
           cantidad: ingrediente.cantidad || '',
           valorComprado: ingrediente.cantidad * ingrediente.precioPorUnidad || '',
-          imagen: ingrediente.imagen || ''
+          imagenUrl: ingrediente.imagenUrl || ''
         });
 
-        if (ingrediente.imagen) {
-          setImagePreview(ingrediente.imagen);
+        if (ingrediente.imagenUrl) {
+          setImagePreview(ingrediente.imagenUrl);
         }
 
         setError(null);
@@ -86,13 +87,13 @@ const CrearIngrediente = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Guardar el archivo File (binario), no convertir a Base64
+      setImagenFile(file);
+      
+      // Mostrar preview para la UI
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
-        setFormData(prev => ({
-          ...prev,
-          imagen: reader.result
-        }));
       };
       reader.readAsDataURL(file);
     }
@@ -100,9 +101,10 @@ const CrearIngrediente = () => {
 
   const handleRemoveImage = () => {
     setImagePreview('');
+    setImagenFile(null);
     setFormData(prev => ({
       ...prev,
-      imagen: ''
+      imagenUrl: ''
     }));
   };
 
@@ -154,11 +156,33 @@ const CrearIngrediente = () => {
     e.preventDefault();
 
     try {
+      let imagenUrl = formData.imagenUrl;
+
+      // Paso 1: Si hay imagen nueva, subirla primero
+      if (imagenFile) {
+        const uploadFormData = new FormData();
+        uploadFormData.append('imagen', imagenFile);
+
+        const uploadResponse = await fetch('http://localhost:5000/api/upload', {
+          method: 'POST',
+          body: uploadFormData
+        });
+
+        if (!uploadResponse.ok) {
+          throw new Error('Error al subir la imagen');
+        }
+
+        const uploadData = await uploadResponse.json();
+        imagenUrl = uploadData.url;
+      }
+
+      // Paso 2: Guardar el ingrediente con la URL de la imagen
       const ingredienteData = {
         nombre: formData.nombre,
         unidadMedida: formData.unidad,
         cantidad: parseFloat(formData.cantidad),
-        precioPorUnidad: valorPorUnidad
+        precioPorUnidad: valorPorUnidad,
+        imagenUrl: imagenUrl
       };
 
       const url = isEditMode
@@ -287,7 +311,18 @@ const CrearIngrediente = () => {
             
             {imagePreview ? (
               <div className="image-preview">
-                <img src={imagePreview} alt="Vista previa" />
+                <label className="image-preview-label">
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    onChange={handleImageChange}
+                    hidden 
+                  />
+                  <img src={imagePreview} alt="Vista previa" style={{ cursor: 'pointer' }} />
+                  <div className="image-preview-overlay">
+                    <span>Cambiar imagen</span>
+                  </div>
+                </label>
                 <button 
                   type="button" 
                   className="image-remove" 

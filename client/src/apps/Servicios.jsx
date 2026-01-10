@@ -176,7 +176,7 @@ export default function Servicios() {
               <ServicesCard
                 key={servicio._id}
                 id={servicio._id}
-                imagen={servicio.imagen}
+                imagen={servicio.imagenUrl}
                 nombre={servicio.nombre}
                 consumoPorMinuto={servicio.consumoPorMinuto}
                 onClick={() => handleAbrirModal(servicio)}

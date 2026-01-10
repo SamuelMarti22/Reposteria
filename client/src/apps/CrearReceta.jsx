@@ -38,6 +38,7 @@ export default function CrearReceta() {
   });
 
   const [imagePreview, setImagePreview] = useState(null);
+  const [imagenFile, setImagenFile] = useState(null);
 
   // Cargar ingredientes y servicios al montar el componente
   useEffect(() => {
@@ -88,7 +89,7 @@ export default function CrearReceta() {
         // Transformar datos del backend al formato del formulario
         setFormData({
           name: receta.nombre || '',
-          image: receta.rutaFoto || '',
+          image: receta.imagenUrl || '',
           tiempo: receta.tiempoPreparacion?.toString() || '',
           porcentajeGanancia: receta.porcentajeGanancia?.toString() || '',
           videoUrl: receta.videoUrl || '',
@@ -127,8 +128,8 @@ export default function CrearReceta() {
         });
         
         // Si hay imagen, establecer preview
-        if (receta.rutaFoto) {
-          setImagePreview(receta.rutaFoto);
+        if (receta.imagenUrl) {
+          setImagePreview(receta.imagenUrl);
         }
         
         setError(null);
@@ -262,15 +263,48 @@ export default function CrearReceta() {
     });
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Mostrar preview
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result);
-        setFormData({ ...formData, image: reader.result });
       };
       reader.readAsDataURL(file);
+
+      // Subir la imagen al servidor
+      const formDataImg = new FormData();
+      formDataImg.append('imagen', file);
+      
+      try {
+        const response = await fetch('http://localhost:5000/api/upload', {
+          method: 'POST',
+          body: formDataImg
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al subir la imagen');
+        }
+
+        const data = await response.json();
+        
+        // Guardar la URL en formData
+        setFormData({
+          ...formData,
+          image: data.url
+        });
+        
+        console.log('Imagen subida:', data.url);
+      } catch (error) {
+        console.error('Error al subir imagen:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo subir la imagen',
+          confirmButtonColor: '#f97316'
+        });
+      }
     }
   };
 
@@ -325,7 +359,27 @@ export default function CrearReceta() {
     e.preventDefault();
 
     try {
-      // Preparar datos para enviar
+      let imagenUrl = formData.image;
+
+      // Paso 1: Si hay imagen nueva, subirla primero
+      if (imagenFile) {
+        const uploadFormData = new FormData();
+        uploadFormData.append('imagen', imagenFile);
+
+        const uploadResponse = await fetch('http://localhost:5000/api/upload', {
+          method: 'POST',
+          body: uploadFormData
+        });
+
+        if (!uploadResponse.ok) {
+          throw new Error('Error al subir la imagen');
+        }
+
+        const uploadData = await uploadResponse.json();
+        imagenUrl = uploadData.url;
+      }
+
+      // Paso 2: Preparar datos para enviar
       const recetaData = {
         nombre: formData.name,
         tiempoPreparacion: parseFloat(formData.tiempo),
@@ -346,7 +400,7 @@ export default function CrearReceta() {
         pasosASeguir: formData.pasos
           .filter((paso) => paso.descripcion.trim())
           .map((paso) => paso.descripcion),
-        rutaFoto: formData.image || "",
+        imagenUrl: imagenUrl || "",
       };
 
       // Determinar URL y método según el modo

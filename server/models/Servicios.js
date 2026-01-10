@@ -14,6 +14,12 @@ const serviciosSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0
+  }, 
+  imagenUrl: {
+    type: String,
+    required: false,
+    trim: true,
+    default: ''
   }
 }, {
   _id: false,

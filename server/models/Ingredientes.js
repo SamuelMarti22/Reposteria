@@ -23,6 +23,10 @@ const ingredientesSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0
+  },
+  imagenUrl: {
+    type: String,
+    default: ''
   }
 }, {
   _id: false,

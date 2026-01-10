@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const connectDB = require('./config/database');
@@ -15,6 +16,32 @@ const PORT = process.env.SERVER_PORT || 5000;
 
 // Conectar a MongoDB
 connectDB();
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Configuracion multer 
+// ═══════════════════════════════════════════════════════════════════════════
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // 'destination' = carpeta donde guardar
+    // Debe existir: client/public/images/
+    cb(null, path.join(__dirname, '../client/public/images/'));
+  },
+  filename: (req, file, cb) => {
+    // 'filename' = cómo se llama el archivo guardado
+    const unique = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, unique + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage });
+
+// Crear carpeta de imágenes si no existe
+const imageDir = path.join(__dirname, '../client/public/images');
+if (!fs.existsSync(imageDir)) {
+  fs.mkdirSync(imageDir, { recursive: true });
+  console.log('📁 Carpeta de imágenes creada');
+}
 
 // Cargar datos JSON (solo ingredientes y servicios)
 let ingredientes = require('./database/ingredientes.json');
@@ -167,7 +194,7 @@ app.use(cors());
 app.use(express.json());
 
 // Servir archivos estáticos (imágenes)
-app.use('/images', express.static(path.join(__dirname, '../client/public/images/recetas')));
+app.use('/images', express.static(path.join(__dirname, '../client/public/images/')));
 
 // Rutas básicas
 app.get('/', (req, res) => {
@@ -198,6 +225,24 @@ app.post('/api/sync', async (req, res) => {
       message: 'Error al sincronizar los datos'
     });
   }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 📦 ENDPOINT - IMAGENES
+// ═══════════════════════════════════════════════════════════════════════════
+app.post('/api/upload', upload.single('imagen'), (req, res) => {
+  // upload.single('imagen') ← Multer ya procesó el archivo
+  // req.file ahora existe con:
+  // - filename: "1704816000000-123456789.jpg"
+  // - path: "client/public/images/ingredientes/1704816000000-123456789.jpg"
+  
+  if (!req.file) {
+    return res.status(400).json({ error: 'No se subió ningún archivo' });
+  }
+  
+  res.json({
+    url: `/images/${req.file.filename}`
+  });
 });
 
 
@@ -244,7 +289,8 @@ app.post('/api/ingredientes', async (req, res) => {
       nombre: nuevoIngrediente.nombre,
       unidadMedida: nuevoIngrediente.unidadMedida,
       cantidad: parseFloat(nuevoIngrediente.cantidad),
-      precioPorUnidad: parseFloat(nuevoIngrediente.precioPorUnidad)
+      precioPorUnidad: parseFloat(nuevoIngrediente.precioPorUnidad),
+      imagenUrl: nuevoIngrediente.imagenUrl || ''
     };
 
     // Guardar en MongoDB
@@ -288,7 +334,8 @@ app.put('/api/ingredientes/:id', async (req, res) => {
         nombre: datosActualizados.nombre,
         unidadMedida: datosActualizados.unidadMedida,
         cantidad: parseFloat(datosActualizados.cantidad),
-        precioPorUnidad: parseFloat(datosActualizados.precioPorUnidad)
+        precioPorUnidad: parseFloat(datosActualizados.precioPorUnidad), 
+        imagenUrl: datosActualizados.imagenUrl || ''
       },
       { new: true, runValidators: true }
     );
@@ -318,12 +365,27 @@ app.delete('/api/ingredientes/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
 
-    // Eliminar de MongoDB
-    const ingrediente = await Ingredientes.findOneAndDelete({ _id: id });
+    // Obtener el ingrediente ANTES de eliminarlo (para saber la imagen)
+    const ingrediente = await Ingredientes.findOne({ _id: id });
 
     if (!ingrediente) {
       return res.status(404).json({ error: 'Ingrediente no encontrado' });
     }
+
+    // Si tiene imagen, eliminar el archivo
+    if (ingrediente.imagenUrl) {
+      const nombreArchivo = ingrediente.imagenUrl.split('/').pop(); // Obtener solo el nombre del archivo
+      const rutaImagen = path.join(__dirname, '../client/public/images/', nombreArchivo);
+      
+      // Verificar si el archivo existe y eliminarlo
+      if (fs.existsSync(rutaImagen)) {
+        fs.unlinkSync(rutaImagen);
+        console.log(`🗑️ Imagen eliminada: ${nombreArchivo}`);
+      }
+    }
+
+    // Eliminar de MongoDB
+    await Ingredientes.findOneAndDelete({ _id: id });
 
     // Actualizar JSON
     await actualizarJSONIngredientes();
@@ -379,7 +441,8 @@ app.post('/api/servicios', async (req, res) => {
     const servicioParaGuardar = {
       _id: nuevoId,
       nombre: nuevoServicio.nombre,
-      consumoPorMinuto: parseFloat(nuevoServicio.consumoPorMinuto)
+      consumoPorMinuto: parseFloat(nuevoServicio.consumoPorMinuto), 
+      imagenUrl: nuevoServicio.imagenUrl || ''
     }
       
     // Guardar en MongoDB
@@ -416,7 +479,8 @@ app.put('/api/servicios/:id', async (req, res) => {
       { _id: id },
       {
         nombre: datosActualizados.nombre,
-        consumoPorMinuto: parseFloat(datosActualizados.consumoPorMinuto)
+        consumoPorMinuto: parseFloat(datosActualizados.consumoPorMinuto), 
+        imagenUrl: datosActualizados.imagenUrl || ''
       },
       { new: true, runValidators: true }
     );
@@ -443,12 +507,28 @@ app.put('/api/servicios/:id', async (req, res) => {
 app.delete('/api/servicios/:id', async (req, res) => {
   try { 
     const id = parseInt(req.params.id);
-    // Eliminar de MongoDB
-    const servicio = await Servicios.findOneAndDelete({ _id: id });
+    
+    // Obtener el servicio ANTES de eliminarlo (para saber la imagen)
+    const servicio = await Servicios.findOne({ _id: id });
 
     if (!servicio) {
       return res.status(404).json({ error: 'Servicio no encontrado' });
     }
+
+    // Si tiene imagen, eliminar el archivo
+    if (servicio.imagenUrl) {
+      const nombreArchivo = servicio.imagenUrl.split('/').pop(); // Obtener solo el nombre del archivo
+      const rutaImagen = path.join(__dirname, '../client/public/images/', nombreArchivo);
+      
+      // Verificar si el archivo existe y eliminarlo
+      if (fs.existsSync(rutaImagen)) {
+        fs.unlinkSync(rutaImagen);
+        console.log(`🗑️ Imagen eliminada: ${nombreArchivo}`);
+      }
+    }
+
+    // Eliminar de MongoDB
+    await Servicios.findOneAndDelete({ _id: id });
 
     // Actualizar JSON
     await actualizarJSONServicios();
@@ -579,7 +659,7 @@ app.post('/api/recetas', async (req, res) => {
       servicios: nuevaReceta.servicios || [],
       porcentajeGanancia: parseFloat(nuevaReceta.porcentajeGanancia) || 0,
       pasosASeguir: nuevaReceta.pasosASeguir || [],
-      rutaFoto: nuevaReceta.rutaFoto || "",
+      imagenUrl: nuevaReceta.imagenUrl || "",
       videoUrl: nuevaReceta.videoUrl || ""
     };
 
@@ -623,7 +703,7 @@ app.put('/api/recetas/:id', async (req, res) => {
       servicios: datosActualizados.servicios || [],
       porcentajeGanancia: parseFloat(datosActualizados.porcentajeGanancia) || 0,
       pasosASeguir: datosActualizados.pasosASeguir || [],
-      rutaFoto: datosActualizados.rutaFoto || "",
+      imagenUrl: datosActualizados.imagenUrl || "",
       videoUrl: datosActualizados.videoUrl || ""
     };
 
@@ -659,12 +739,27 @@ app.delete('/api/recetas/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id);
 
-    // Eliminar de MongoDB
-    const receta = await Receta.findOneAndDelete({ _id: id });
+    // Obtener la receta ANTES de eliminarla (para saber la imagen)
+    const receta = await Receta.findOne({ _id: id });
 
     if (!receta) {
       return res.status(404).json({ error: 'Receta no encontrada' });
     }
+
+    // Si tiene imagen, eliminar el archivo
+    if (receta.imagenUrl) {
+      const nombreArchivo = receta.imagenUrl.split('/').pop(); // Obtener solo el nombre del archivo
+      const rutaImagen = path.join(__dirname, '../client/public/images/', nombreArchivo);
+      
+      // Verificar si el archivo existe y eliminarlo
+      if (fs.existsSync(rutaImagen)) {
+        fs.unlinkSync(rutaImagen);
+        console.log(`🗑️ Imagen eliminada: ${nombreArchivo}`);
+      }
+    }
+
+    // Eliminar de MongoDB
+    await Receta.findOneAndDelete({ _id: id });
 
     res.json({
       message: 'Receta eliminada exitosamente',

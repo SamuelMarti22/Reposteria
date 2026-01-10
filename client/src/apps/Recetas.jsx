@@ -97,7 +97,7 @@ export default function Recetas() {
             {recetasFiltradas.map((receta) => (
               <RecipeCard
                 key={receta._id}
-                imagen={receta.rutaFoto}
+                imagen={receta.imagenUrl}
                 nombre={receta.nombre}
                 tiempoPreparacion={receta.tiempoPreparacion}
                 costoTiempoPreparacion={`$${receta.costos.costoTiempoPreparacion.toLocaleString('es-CO')}`}

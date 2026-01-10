@@ -89,7 +89,7 @@ export default function Ingredientes() {
             {ingredientesFiltrados.map((ingrediente) => (
               <IngredientCard
                 id={ingrediente._id}
-                imagen={ingrediente.imagen}
+                imagen={ingrediente.imagenUrl}
                 nombre={ingrediente.nombre}
                 cantidad={ingrediente.cantidad}
                 unidad={ingrediente.unidadMedida}

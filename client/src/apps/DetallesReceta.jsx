@@ -152,9 +152,9 @@ export default function DetallesReceta() {
         <div className="recipe-card-main">
           <div className="recipe-card-grid">
             <div className="recipe-image-container">
-              {recipe.rutaFoto && (
+              {recipe.imagenUrl && (
                 <img 
-                  src={recipe.rutaFoto} 
+                  src={`http://localhost:5000${recipe.imagenUrl}`}
                   alt={recipe.nombre}
                   className="recipe-image"
                 />

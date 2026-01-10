@@ -14,9 +14,10 @@ const ServiceModal = ({
   const [formData, setFormData] = useState({
     nombre: '',
     consumoPorMinuto: '',
-    imagen: ''
+    imagenUrl: ''
   });
   const [imagenPreview, setImagenPreview] = useState(null);
+  const [imagenFile, setImagenFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -24,17 +25,19 @@ const ServiceModal = ({
       setFormData({
         nombre: servicio.nombre || '',
         consumoPorMinuto: servicio.consumoPorMinuto || '',
-        imagen: servicio.imagen || ''
+        imagenUrl: servicio.imagenUrl || ''
       });
-      setImagenPreview(servicio.imagen || null);
+      setImagenPreview(servicio.imagenUrl || null);
+      setImagenFile(null);
       setIsEditMode(false);
     } else if (isCreating) {
       setFormData({
         nombre: '',
         consumoPorMinuto: '',
-        imagen: ''
+        imagenUrl: ''
       });
       setImagenPreview(null);
+      setImagenFile(null);
       setIsEditMode(true);
     }
   }, [servicio, isCreating]);
@@ -59,14 +62,13 @@ const ServiceModal = ({
   const handleImagenChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // Guardar el archivo para subirlo luego
+      setImagenFile(file);
+      
+      // Mostrar preview
       const reader = new FileReader();
       reader.onload = (event) => {
-        const base64 = event.target.result;
-        setFormData(prev => ({
-          ...prev,
-          imagen: base64
-        }));
-        setImagenPreview(base64);
+        setImagenPreview(event.target.result);
       };
       reader.readAsDataURL(file);
     }
@@ -86,6 +88,33 @@ const ServiceModal = ({
 
     try {
       setLoading(true);
+      let imagenUrl = formData.imagenUrl;
+
+      // Paso 1: Si hay imagen nueva, subirla primero
+      if (imagenFile) {
+        const uploadFormData = new FormData();
+        uploadFormData.append('imagen', imagenFile);
+
+        const uploadResponse = await fetch('http://localhost:5000/api/upload', {
+          method: 'POST',
+          body: uploadFormData
+        });
+
+        if (!uploadResponse.ok) {
+          throw new Error('Error al subir la imagen');
+        }
+
+        const uploadData = await uploadResponse.json();
+        imagenUrl = uploadData.url;
+      }
+
+      // Paso 2: Guardar el servicio con la URL de la imagen
+      const servicioData = {
+        nombre: formData.nombre,
+        consumoPorMinuto: parseFloat(formData.consumoPorMinuto),
+        imagenUrl: imagenUrl
+      };
+
       const url = isCreating 
         ? 'http://localhost:5000/api/servicios'
         : `http://localhost:5000/api/servicios/${servicio._id}`;
@@ -97,7 +126,7 @@ const ServiceModal = ({
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(servicioData)
       });
 
       if (response.ok) {
@@ -111,7 +140,16 @@ const ServiceModal = ({
           timerProgressBar: true
         });
         setIsEditMode(false);
+        setImagenFile(null);
         onEdit();
+        onClose();
+        
+        // Recargar la página si es un nuevo servicio
+        if (isCreating) {
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
       } else {
         await Swal.fire({
           icon: 'error',
@@ -151,10 +189,9 @@ const ServiceModal = ({
         </button>
 
         {/* Imagen */}
-        {!isCreating && (
-          <div className="service-modal-image-container">
-          {formData.imagen ? (
-            <img src={formData.imagen} alt={formData.nombre} className="service-modal-image" />
+        <div className="service-modal-image-container">
+          {imagenPreview || formData.imagenUrl ? (
+            <img src={imagenPreview || formData.imagenUrl} alt={formData.nombre} className="service-modal-image" />
           ) : (
             <div className="service-modal-image-placeholder">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -164,7 +201,6 @@ const ServiceModal = ({
             </div>
           )}
         </div>
-        )}
 
         {/* Contenido */}
         <div className="service-modal-content">
@@ -204,6 +240,11 @@ const ServiceModal = ({
                 {imagenPreview && (
                   <div className="service-modal-preview">
                     <img src={imagenPreview} alt="Vista previa" className="service-modal-preview-image" />
+                  </div>
+                )}
+                {!imagenPreview && formData.imagenUrl && (
+                  <div className="service-modal-preview">
+                    <img src={formData.imagenUrl} alt="Imagen actual" className="service-modal-preview-image" />
                   </div>
                 )}
               </div>
