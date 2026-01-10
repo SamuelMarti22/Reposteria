@@ -50,8 +50,8 @@
 /* Botón cerrar */
 .service-modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 8px;
+  right: 8px;
   width: 36px;
   height: 36px;
   border: none;
@@ -61,14 +61,16 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1001;
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 0;
 }
 
 .service-modal-close:hover {
   background-color: #d97638;
   transform: scale(1.1);
+  color: white;
 }
 
 .service-modal-close svg {

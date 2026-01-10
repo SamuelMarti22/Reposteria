@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
 import Swal from 'sweetalert2';
 import './ServiceModal.css';
 
-const ServiceModal = ({ 
+const ServiceModal = ({
   isOpen,
   onClose,
   servicio,
@@ -11,6 +12,7 @@ const ServiceModal = ({
   isCreating = false
 }) => {
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
     consumoPorMinuto: '',
@@ -64,7 +66,7 @@ const ServiceModal = ({
     if (file) {
       // Guardar el archivo para subirlo luego
       setImagenFile(file);
-      
+
       // Mostrar preview
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -115,10 +117,10 @@ const ServiceModal = ({
         imagenUrl: imagenUrl
       };
 
-      const url = isCreating 
+      const url = isCreating
         ? 'http://localhost:5000/api/servicios'
         : `http://localhost:5000/api/servicios/${servicio._id}`;
-      
+
       const method = isCreating ? 'POST' : 'PUT';
 
       const response = await fetch(url, {
@@ -143,7 +145,7 @@ const ServiceModal = ({
         setImagenFile(null);
         onEdit();
         onClose();
-        
+
         // Recargar la página si es un nuevo servicio
         if (isCreating) {
           setTimeout(() => {
@@ -181,16 +183,19 @@ const ServiceModal = ({
     <div className="service-modal-backdrop" onClick={handleBackdropClick}>
       <div className="service-modal">
         {/* Botón cerrar */}
-        <button className="service-modal-close" onClick={onClose} aria-label="Cerrar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#333333" strokeWidth="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+        <button 
+          className="service-modal-close" 
+          onClick={onClose} 
+          aria-label="Cerrar"
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          <X size={24} color={isHovering ? "#ffffff" : "#d97638"} strokeWidth={2} />
         </button>
 
         {/* Imagen */}
         <div className="service-modal-image-container">
-          {imagenPreview || formData.imagenUrl ? (
+          {(imagenPreview && isEditMode) || formData.imagenUrl ? (
             <img src={imagenPreview || formData.imagenUrl} alt={formData.nombre} className="service-modal-image" />
           ) : (
             <div className="service-modal-image-placeholder">
@@ -214,7 +219,7 @@ const ServiceModal = ({
                 placeholder="Nombre del servicio"
                 className="service-modal-input service-modal-input--title"
               />
-              
+
               <div className="service-modal-form-group">
                 <label className="service-modal-label">Consumo por minuto</label>
                 <input
@@ -237,16 +242,6 @@ const ServiceModal = ({
                   accept="image/*"
                   className="service-modal-input service-modal-input--file"
                 />
-                {imagenPreview && (
-                  <div className="service-modal-preview">
-                    <img src={imagenPreview} alt="Vista previa" className="service-modal-preview-image" />
-                  </div>
-                )}
-                {!imagenPreview && formData.imagenUrl && (
-                  <div className="service-modal-preview">
-                    <img src={formData.imagenUrl} alt="Imagen actual" className="service-modal-preview-image" />
-                  </div>
-                )}
               </div>
             </>
           ) : (
@@ -275,15 +270,15 @@ const ServiceModal = ({
           <div className="service-modal-actions">
             {isEditMode ? (
               <>
-                <button 
-                  className="service-modal-btn service-modal-btn--edit" 
+                <button
+                  className="service-modal-btn service-modal-btn--edit"
                   onClick={handleGuardar}
                   disabled={loading}
                 >
                   {loading ? 'Guardando...' : 'Guardar cambios'}
                 </button>
-                <button 
-                  className="service-modal-btn service-modal-btn--cancel" 
+                <button
+                  className="service-modal-btn service-modal-btn--cancel"
                   onClick={() => setIsEditMode(false)}
                   disabled={loading}
                 >
@@ -292,8 +287,8 @@ const ServiceModal = ({
               </>
             ) : (
               <>
-                <button 
-                  className="service-modal-btn service-modal-btn--edit" 
+                <button
+                  className="service-modal-btn service-modal-btn--edit"
                   onClick={() => setIsEditMode(true)}
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
